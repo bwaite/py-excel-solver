@@ -45,7 +45,8 @@ class Solver:
     ):
         if not len(objective_function) == len(constraints_left[0]):
             raise ValueError(
-                f"Your objective function has {len(objective_function)} coefficients, but you passed {len(constraints_left[0])} coefficients in your constraints matrix (c_l)."
+                f"Your objective function has {len(objective_function)} coefficients, but you passed"
+                f"{len(constraints_left[0])} coefficients in your constraints matrix (c_l)."
             )
 
         if not len(constraints_left) == len(constraints_right) == len(constraints_signs):
