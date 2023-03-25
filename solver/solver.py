@@ -59,7 +59,6 @@ class Solver():
               maximum_for_all: int | float = None,
               bounds: np.ndarray | None = None,
               method: str = "highs",
-              display_result: bool = True,
               ):
         self.print_objective_function(self.objective_function, self.problem_type)
 
@@ -110,10 +109,7 @@ class Solver():
             method=method,
         )
 
-        if display_result:
-            self.print_results(solution)
-        else:
-            return solution
+        return solution
 
 
     def print_objective_function(self, obj: np.ndarray, problem_type: ProblemType) -> None:

@@ -4,9 +4,7 @@ dist
 *.egg-info
 
 .DS_Store
-*test.py
 
-*.ipynb
 *.docx
 *.csv
 *.xlsx
