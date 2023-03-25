@@ -1,7 +1,7 @@
 
 lint:
     poetry run ruff check .
-    poetry run mypy .
+    poetry run mypy --strict .
 
 format:
     poetry run black .

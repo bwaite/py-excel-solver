@@ -7,7 +7,7 @@ import numpy as np
 # import pytest
 
 
-def test_problem_1():
+def test_problem_1() -> None:
     """Minimization test"""
 
     solver = Solver(
@@ -43,7 +43,7 @@ def test_problem_1():
     assert np.allclose(solution.x, quantities)
 
 
-def test_problem_2():
+def test_problem_2() -> None:
     """Maximization test"""
 
     solver = Solver(
@@ -83,7 +83,7 @@ def test_problem_2():
     assert np.allclose(solution.x, quantities)
 
 
-def test_problem_3():
+def test_problem_3() -> None:
     """Trailmix cost minimization problem
 
     Seems to orinate from homework in https://www.cmu.edu/tepper/programs/courses/45751.html
@@ -127,7 +127,7 @@ def test_problem_3():
     assert np.allclose(solution.x, quantities)
 
 
-def test_problem_4():
+def test_problem_4() -> None:
     solver = Solver(
         problem_type=ProblemType.MAX,
         objective_function=np.array([16, 20.5, 14]),

@@ -27,20 +27,21 @@ class ConstraintSign(StrEnum):
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
+NumericArray = npt.NDArray[np.int_ | np.float_]
 
 class Solver:
-    objective_function: np.ndarray
-    constraints_left: np.ndarray
-    constraints_right: np.ndarray
+    objective_function: NumericArray
+    constraints_left: NumericArray
+    constraints_right: NumericArray
     constraints_signs: npt.NDArray[ConstraintSign]  # type: ignore
     problem_type: ProblemType
 
     def __init__(
         self,
-        objective_function: np.ndarray,
-        constraints_left: np.ndarray,
-        constraints_right: np.ndarray,
-        constraints_signs: npt.NDArray[ConstraintSign],  # type: ignore
+        objective_function: NumericArray,
+        constraints_left: NumericArray,
+        constraints_right: NumericArray,
+        constraints_signs: npt.NDArray[ConstraintSign],
         problem_type: ProblemType,
     ):
         if not len(objective_function) == len(constraints_left[0]):
@@ -63,9 +64,9 @@ class Solver:
         make_unconstrained_non_negative: bool = True,
         minimum_for_all: int | float | None = None,
         maximum_for_all: int | float | None = None,
-        bounds: np.ndarray | None = None,
+        bounds: NumericArray | None = None,
         method: str = "highs",
-    ):
+    ) -> OptimizeResult:
         self.print_objective_function(self.objective_function, self.problem_type)
 
         if not bounds:
@@ -84,8 +85,9 @@ class Solver:
                 bounds[:, 1] = maximum_for_all
 
         # Reverse coefficient +/- sign for maximization problem
+        obj = self.objective_function
         if self.problem_type == ProblemType.MAX:
-            self.objective_function *= -1
+            obj = self.objective_function * -1
 
         # Reverse constraint +/- sign where inequality is ">="
         self.constraints_right[self.constraints_signs == ConstraintSign.GREATER_OR_EQUAL] *= -1
@@ -107,7 +109,7 @@ class Solver:
 
         # Solve linear programming problem
         solution = linprog(
-            self.objective_function,
+            obj,
             A_ub=self.constraints_left,
             b_ub=self.constraints_right,
             A_eq=equalities_left,
@@ -118,7 +120,7 @@ class Solver:
 
         return solution
 
-    def print_objective_function(self, obj: np.ndarray, problem_type: ProblemType) -> None:
+    def print_objective_function(self, obj: NumericArray, problem_type: ProblemType) -> None:
         """ """
         print("------------------------------------------------------")
 
