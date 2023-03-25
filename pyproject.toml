@@ -24,6 +24,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
 plugins = "numpy.typing.mypy_plugin"
+ignore_missing_imports = true # scipy.optimize seems to be missing typedefs
 
 [tool.ruff]
 line-length = 120

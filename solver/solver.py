@@ -32,7 +32,7 @@ class Solver:
     objective_function: np.ndarray
     constraints_left: np.ndarray
     constraints_right: np.ndarray
-    constraints_signs: npt.NDArray[ConstraintSign]
+    constraints_signs: npt.NDArray[ConstraintSign]  # type: ignore
     problem_type: ProblemType
 
     def __init__(
@@ -40,7 +40,7 @@ class Solver:
         objective_function: np.ndarray,
         constraints_left: np.ndarray,
         constraints_right: np.ndarray,
-        constraints_signs: npt.NDArray[ConstraintSign],
+        constraints_signs: npt.NDArray[ConstraintSign],  # type: ignore
         problem_type: ProblemType,
     ):
         if not len(objective_function) == len(constraints_left[0]):
@@ -61,8 +61,8 @@ class Solver:
     def solve(
         self,
         make_unconstrained_non_negative: bool = True,
-        minimum_for_all: int | float = None,
-        maximum_for_all: int | float = None,
+        minimum_for_all: int | float | None = None,
+        maximum_for_all: int | float | None = None,
         bounds: np.ndarray | None = None,
         method: str = "highs",
     ):
@@ -82,9 +82,6 @@ class Solver:
 
             if maximum_for_all:
                 bounds[:, 1] = maximum_for_all
-
-            # Convert bounds 2d array to list of tuples
-            bounds = [tuple(x) for x in bounds]
 
         # Reverse coefficient +/- sign for maximization problem
         if self.problem_type == ProblemType.MAX:
