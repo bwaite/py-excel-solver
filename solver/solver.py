@@ -6,7 +6,9 @@ import numpy as np
 import numpy.typing as npt
 from scipy.optimize import linprog, OptimizeResult
 from enum import Enum, StrEnum
+
 # from tabulate import tabulate
+
 
 class ProblemType(Enum):
     """Type of optimization to perform (maximize or minimize)."""
@@ -25,23 +27,26 @@ class ConstraintSign(StrEnum):
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
-class Solver():
+
+class Solver:
     objective_function: np.ndarray
     constraints_left: np.ndarray
     constraints_right: np.ndarray
     constraints_signs: npt.NDArray[ConstraintSign]
     problem_type: ProblemType
 
-    def __init__(self,
-            objective_function: np.ndarray,
-            constraints_left: np.ndarray,
-            constraints_right: np.ndarray,
-            constraints_signs: npt.NDArray[ConstraintSign],
-            problem_type: ProblemType,
+    def __init__(
+        self,
+        objective_function: np.ndarray,
+        constraints_left: np.ndarray,
+        constraints_right: np.ndarray,
+        constraints_signs: npt.NDArray[ConstraintSign],
+        problem_type: ProblemType,
     ):
-
         if not len(objective_function) == len(constraints_left[0]):
-            raise ValueError(f"Your objective function has {len(objective_function)} coefficients, but you passed {len(constraints_left[0])} coefficients in your constraints matrix (c_l).")
+            raise ValueError(
+                f"Your objective function has {len(objective_function)} coefficients, but you passed {len(constraints_left[0])} coefficients in your constraints matrix (c_l)."
+            )
 
         if not len(constraints_left) == len(constraints_right) == len(constraints_signs):
             raise ValueError("The lengths of your c_l, c_r, and signs arrays must be equal.")
@@ -52,14 +57,14 @@ class Solver():
         self.constraints_signs = constraints_signs
         self.problem_type = problem_type
 
-
-    def solve(self,
-              make_unconstrained_non_negative: bool = True,
-              minimum_for_all: int | float = None,
-              maximum_for_all: int | float = None,
-              bounds: np.ndarray | None = None,
-              method: str = "highs",
-              ):
+    def solve(
+        self,
+        make_unconstrained_non_negative: bool = True,
+        minimum_for_all: int | float = None,
+        maximum_for_all: int | float = None,
+        bounds: np.ndarray | None = None,
+        method: str = "highs",
+    ):
         self.print_objective_function(self.objective_function, self.problem_type)
 
         if not bounds:
@@ -92,8 +97,12 @@ class Solver():
         if ConstraintSign.EQUAL in self.constraints_signs:
             equalities_left = self.constraints_left[self.constraints_signs == ConstraintSign.EQUAL]
             equalities_right = self.constraints_right[self.constraints_signs == ConstraintSign.EQUAL]
-            self.constraints_left = np.delete(self.constraints_left, np.where(self.constraints_signs == ConstraintSign.EQUAL), 0)
-            self.constraints_right = np.delete(self.constraints_right, np.where(self.constraints_signs == ConstraintSign.EQUAL), 0)
+            self.constraints_left = np.delete(
+                self.constraints_left, np.where(self.constraints_signs == ConstraintSign.EQUAL), 0
+            )
+            self.constraints_right = np.delete(
+                self.constraints_right, np.where(self.constraints_signs == ConstraintSign.EQUAL), 0
+            )
         else:
             equalities_left = None
             equalities_right = None
@@ -111,14 +120,8 @@ class Solver():
 
         return solution
 
-
     def print_objective_function(self, obj: np.ndarray, problem_type: ProblemType) -> None:
-        """
-        >>> print_objective_function([16, -20.5, 14], "max")
-        ------------------------------------------------------
-        MAXIMIZE: z = 16a - 20.5b + 14c
-        ------------------------------------------------------
-        """
+        """ """
         print("------------------------------------------------------")
 
         if problem_type == ProblemType.MAX:
@@ -136,10 +139,9 @@ class Solver():
 
         print("\n------------------------------------------------------")
 
-
     def print_results(self, solution: OptimizeResult) -> None:
         """
-        Print results
+        Print results (TODO use tabulate to format table)
         """
         np.set_printoptions(precision=2, suppress=True)
         optimal = round(solution.fun, ndigits=2)
@@ -158,4 +160,3 @@ class Solver():
         print("------------------------------------------------------")
         # print(f"Iterations: {solution.nit}")
         print(solution.message)
-
