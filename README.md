@@ -15,11 +15,11 @@ pip install excel_solver
 
 <details>
   <summary><i><b>How to use</b></i></summary>
-  
+
 1. Download ```solver.py``` (click 'raw' view, then right click, Save As)
 2. ```import solver```, then follow the format of the implementations below
 3. Optional: download ```example-code.py``` and execute it from same folder as solver.py to test it out.
-  
+
 Params for ```solver.solve()```:
 - _problem_type:_ Required. Specify "max" or "min"
 - _objective_function:_ Required. List of coefficients.
@@ -48,7 +48,7 @@ Params for ```solver.solve()```:
 
 <details>
   <summary><i><b>Extra features you don't get in Excel Solver</b></i></summary>
-    
+
 - With a single-integer assignment, you can set the ```minimum_for_all``` and/or ```maximum_for_all``` constraints to set an upper and/or lower bound for all the decision variables at once.
 - You don't have to calculate objective function or matrix sumproduct constraints yourself.
 - Objective function is set up and displayed for you in the output. Ex: ```MINIMIZE: z = 16a - 20.5b + 14c```.
@@ -61,7 +61,7 @@ Params for ```solver.solve()```:
 - Scipy's ```linprog()``` is very hard to use if you're coming from Excel. It does NOT let you pick between maximize and minimize like you would in Excel, and it does not let you specify inequality signs (>= <=) for constraints. And, if you want to assert equalities as constraints, you have to pass them as a completely separate matrix/vector pair in the function. As a result, using scipy linprog() requires that you manipulate many of your values ahead of time in a way that makes your code impossible to read and interpret.
 </details>
 
-
+TODO! Update to format of Solver object usage in the tests
 ### Example 1
 Solved in Excel:
 ![image](https://user-images.githubusercontent.com/90723578/148739017-b8ee6e72-5684-44d3-aaa0-9dc4d0f905eb.png)
