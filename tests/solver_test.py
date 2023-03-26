@@ -12,20 +12,22 @@ def test_problem_1() -> None:
 
     solver = Solver(
         problem_type=ProblemType.MIN,
-        objective_function=np.array([10, 15, 25]),
+        objective_function=np.array([10, 15, 25], dtype=np.int32),
         constraints_left=np.array(
             [
                 [1, 1, 1],
                 [1, -2, 0],
                 [0, 0, 1],
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_right=np.array(
             [
                 1000,
                 0,
                 340,
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_signs=np.array(
             [
@@ -48,14 +50,15 @@ def test_problem_2() -> None:
 
     solver = Solver(
         problem_type=ProblemType.MAX,
-        objective_function=np.array([16, 20.5, 14]),
+        objective_function=np.array([16, 20.5, 14],  dtype=np.float64),
         constraints_left=np.array(
             [
                 [4, 6, 2],
                 [3, 8, 6],
                 [9, 6, 4],
                 [30, 40, 25],
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_right=np.array(
             [
@@ -63,7 +66,8 @@ def test_problem_2() -> None:
                 2000,
                 1440,
                 9600,
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_signs=np.array(
             [
@@ -94,14 +98,15 @@ def test_problem_3() -> None:
     print("Problem #3 (Trail Mix):")
     solver = Solver(
         problem_type=ProblemType.MIN,
-        objective_function=np.array([4, 5, 3, 7, 6]),
+        objective_function=np.array([4, 5, 3, 7, 6], dtype=np.int32),
         constraints_left=np.array(
             [
                 [10, 20, 10, 30, 20],
                 [5, 7, 4, 9, 2],
                 [1, 4, 10, 2, 1],
                 [500, 450, 160, 300, 500],
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_right=np.array(
             [
@@ -109,7 +114,8 @@ def test_problem_3() -> None:
                 10,
                 15,
                 600,
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_signs=np.array(
             [
@@ -130,14 +136,15 @@ def test_problem_3() -> None:
 def test_problem_4() -> None:
     solver = Solver(
         problem_type=ProblemType.MAX,
-        objective_function=np.array([16, 20.5, 14]),
+        objective_function=np.array([16, 20.5, 14], dtype=np.float64),
         constraints_left=np.array(
             [
                 [4, 6, 2],
                 [9, 6, 4],
                 [30, 40, 25],
                 [3, 8, 6],
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_right=np.array(
             [
@@ -145,7 +152,8 @@ def test_problem_4() -> None:
                 1440,
                 9600,
                 1984,
-            ]
+            ],
+            dtype=np.int32
         ),
         constraints_signs=np.array(
             [
