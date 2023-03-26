@@ -19,7 +19,7 @@ def test_problem_1() -> None:
                 [1, -2, 0],
                 [0, 0, 1],
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_right=np.array(
             [
@@ -27,7 +27,7 @@ def test_problem_1() -> None:
                 0,
                 340,
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_signs=np.array(
             [
@@ -50,7 +50,7 @@ def test_problem_2() -> None:
 
     solver = Solver(
         problem_type=ProblemType.MAX,
-        objective_function=np.array([16, 20.5, 14],  dtype=np.float64),
+        objective_function=np.array([16, 20.5, 14], dtype=np.float64),
         constraints_left=np.array(
             [
                 [4, 6, 2],
@@ -58,7 +58,7 @@ def test_problem_2() -> None:
                 [9, 6, 4],
                 [30, 40, 25],
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_right=np.array(
             [
@@ -67,7 +67,7 @@ def test_problem_2() -> None:
                 1440,
                 9600,
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_signs=np.array(
             [
@@ -106,7 +106,7 @@ def test_problem_3() -> None:
                 [1, 4, 10, 2, 1],
                 [500, 450, 160, 300, 500],
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_right=np.array(
             [
@@ -115,7 +115,7 @@ def test_problem_3() -> None:
                 15,
                 600,
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_signs=np.array(
             [
@@ -144,7 +144,7 @@ def test_problem_4() -> None:
                 [30, 40, 25],
                 [3, 8, 6],
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_right=np.array(
             [
@@ -153,7 +153,7 @@ def test_problem_4() -> None:
                 9600,
                 1984,
             ],
-            dtype=np.int32
+            dtype=np.int32,
         ),
         constraints_signs=np.array(
             [

@@ -29,6 +29,7 @@ ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
 NumericArray = npt.NDArray[np.int_ | np.float_]
 
+
 class Solver:
     objective_function: NumericArray
     constraints_left: NumericArray
