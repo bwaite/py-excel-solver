@@ -1,8 +1,9 @@
 """
 Tests for solver library
 """
-from solver.solver import Solver, ProblemType, ConstraintSign
 import numpy as np
+
+from solver.solver import ConstraintSign, ProblemType, Solver
 
 # import pytest
 

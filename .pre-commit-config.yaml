@@ -20,6 +20,22 @@ repos:
     hooks:
       - id: ruff
 
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.11.2
+  #   hooks:
+  #     - id: isort
+  #       name: isort (python)
+  # Failure to install isort hook
+  - repo: local
+    hooks:
+      - id: isort
+        types: [python]
+        name: isort
+        entry: poetry run python -m isort --check-only .
+        language: system
+        pass_filenames: false
+        always_run: true
+
   - repo: https://github.com/ambv/black
     rev: 23.1.0
     hooks:

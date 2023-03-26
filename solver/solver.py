@@ -2,10 +2,11 @@
 Simplified interface to the scipy linprog API which allows it to be used
 in a similar way to Excel's Solver
 """
+from enum import Enum, StrEnum
+
 import numpy as np
 import numpy.typing as npt
-from scipy.optimize import linprog, OptimizeResult
-from enum import Enum, StrEnum
+from scipy.optimize import OptimizeResult, linprog
 
 # from tabulate import tabulate
 
