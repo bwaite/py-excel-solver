@@ -184,6 +184,17 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-randomly"
+version = "3.12.0"
+description = "Pytest plugin to randomly order tests and control random.seed."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+pytest = "*"
+
+[[package]]
 name = "ruff"
 version = "0.0.259"
 description = "An extremely fast Python linter, written in Rust."
@@ -226,7 +237,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "aa5483adc4a6b74b848a474886b8e50f901ac4535764d206820ffce3e66ef07a"
+content-hash = "b8d7b98c0bb902cdcb41921fa5ab83d202c4a876db4802f1d8de247ccf6c4629"
 
 [metadata.files]
 attrs = [
@@ -361,6 +372,10 @@ pluggy = [
 pytest = [
     {file = "pytest-7.2.2-py3-none-any.whl", hash = "sha256:130328f552dcfac0b1cec75c12e3f005619dc5f874f0a06e8ff7263f0ee6225e"},
     {file = "pytest-7.2.2.tar.gz", hash = "sha256:c99ab0c73aceb050f68929bc93af19ab6db0558791c6a0715723abe9d0ade9d4"},
+]
+pytest-randomly = [
+    {file = "pytest-randomly-3.12.0.tar.gz", hash = "sha256:d60c2db71ac319aee0fc6c4110a7597d611a8b94a5590918bfa8583f00caccb2"},
+    {file = "pytest_randomly-3.12.0-py3-none-any.whl", hash = "sha256:f4f2e803daf5d1ba036cc22bf4fe9dbbf99389ec56b00e5cba732fb5c1d07fdd"},
 ]
 ruff = [
     {file = "ruff-0.0.259-py3-none-macosx_10_7_x86_64.whl", hash = "sha256:f3938dc45e2a3f818e9cbd53007265c22246fbfded8837b2c563bf0ebde1a226"},
