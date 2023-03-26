@@ -9,3 +9,7 @@ format:
 
 test:
     poetry run pytest tests
+
+audit:
+    poetry export -f requirements.txt --output requirements.txt
+    pip-audit -r requirements.txt
