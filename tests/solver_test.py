@@ -2,6 +2,7 @@
 Tests for solver library
 """
 import numpy as np
+import pandas as pd
 
 from solver.solver import ConstraintSign, ProblemType, Solver
 
@@ -169,4 +170,49 @@ def test_problem_4() -> None:
     solution = solver.solve()
     assert round(solution.fun) == -4952
     quantities = np.array([0.0, 176.0, 96.0])
+    assert np.allclose(solution.x, quantities)
+
+
+def test_pandas() -> None:
+    objective_function = pd.Series(
+        data={"seeds": 4.00, "raisins": 5.00, "flakes": 3.00, "pecans": 7.00, "walnuts": 6.00}
+    )
+
+    constraints_left = pd.DataFrame(
+        {
+            "vitamins": [10, 20, 10, 30, 20],
+            "minerals": [5, 7, 4, 9, 2],
+            "protein": [1, 4, 10, 2, 1],
+            "calories": [500, 450, 160, 300, 500],
+        },
+    )
+
+    constraints_right = pd.Series(
+        data={
+            "vitamins": 16,
+            "minerals": 10,
+            "protein": 15,
+            "calories": 600,
+        }
+    )
+    constraints_signs = np.array(
+        [
+            ConstraintSign.GREATER_OR_EQUAL,
+            ConstraintSign.GREATER_OR_EQUAL,
+            ConstraintSign.GREATER_OR_EQUAL,
+            ConstraintSign.GREATER_OR_EQUAL,
+        ]
+    )
+
+    solver = Solver(
+        problem_type=ProblemType.MIN,
+        objective_function=objective_function.to_numpy(),
+        constraints_left=constraints_left.to_numpy().T,
+        constraints_right=constraints_right.to_numpy(),
+        constraints_signs=constraints_signs,
+    )
+
+    solution = solver.solve(minimum_for_all=0.1)
+    assert round(solution.fun, ndigits=2) == 8.04
+    quantities = np.array([0.44415274, 0.18090692, 1.35322196, 0.1, 0.1])
     assert np.allclose(solution.x, quantities)
