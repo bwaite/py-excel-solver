@@ -4,7 +4,7 @@ Tests for solver library
 import numpy as np
 import pandas as pd
 
-from solver.solver import ConstraintSign, ProblemType, Solver
+from excelsolver.solver import ConstraintSign, ProblemType, Solver
 
 # import pytest
 
