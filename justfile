@@ -13,3 +13,6 @@ test:
 audit:
     poetry export -f requirements.txt --output requirements.txt
     pip-audit -r requirements.txt
+
+coverage:
+    poetry run pytest --cov=solver tests/
