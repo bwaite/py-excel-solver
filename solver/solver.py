@@ -32,6 +32,8 @@ NumericArray = npt.NDArray[np.int_ | np.float_]
 
 
 class Solver:
+    """Helper object to make using the scipy linprog function more like the Excel Solver"""
+
     objective_function: NumericArray
     constraints_left: NumericArray
     constraints_right: NumericArray
