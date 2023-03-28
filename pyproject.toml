@@ -24,6 +24,8 @@ pandas = "^1.5.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^4.0.0"
+ruff = "^0.0.259"
+ipdb = "^0.13.13"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -45,7 +47,7 @@ pythonpath = [
   "."
 ]
 filterwarnings = "ignore::pytest.PytestConfigWarning" # Seems to be something with the V7 of pytest
-
+addopts = "--pdbcls=IPython.terminal.debugger:TerminalPdb"
 
 classifiers = [
 	"License :: OSI Approved :: MIT License",

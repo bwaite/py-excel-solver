@@ -2,7 +2,7 @@
 Simplified interface to the scipy linprog API which allows it to be used
 in a similar way to Excel's Solver
 """
-from enum import Enum, StrEnum
+from enum import IntEnum, auto
 
 import numpy as np
 import numpy.typing as npt
@@ -11,19 +11,19 @@ from scipy.optimize import OptimizeResult, linprog
 # from tabulate import tabulate
 
 
-class ProblemType(Enum):
+class ProblemType(IntEnum):
     """Type of optimization to perform (maximize or minimize)."""
 
-    MAX = 1
-    MIN = 2
+    MAX = auto()
+    MIN = auto()
 
 
-class ConstraintSign(StrEnum):
+class ConstraintSign(IntEnum):
     """Type of contstraints to use."""
 
-    GREATER_OR_EQUAL = ">="
-    LESS_OR_EQUAL = "<="
-    EQUAL = "="
+    GREATER_OR_EQUAL = -1
+    EQUAL = 0
+    LESS_OR_EQUAL = 1
 
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -37,7 +37,7 @@ class Solver:
     objective_function: NumericArray
     constraints_left: NumericArray
     constraints_right: NumericArray
-    constraints_signs: npt.NDArray[ConstraintSign]  # type: ignore
+    constraints_signs: npt.NDArray[np.int_]
     problem_type: ProblemType
 
     def __init__(
@@ -45,7 +45,7 @@ class Solver:
         objective_function: NumericArray,
         constraints_left: NumericArray,
         constraints_right: NumericArray,
-        constraints_signs: npt.NDArray[ConstraintSign],
+        constraints_signs: npt.NDArray[np.int_],
         problem_type: ProblemType,
     ):
         if not len(objective_function) == len(constraints_left[0]):

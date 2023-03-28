@@ -10,9 +10,15 @@ format:
 test:
     poetry run pytest tests
 
+test-dbg:
+    poetry run pytest --pdb tests
+
 audit:
     poetry export -f requirements.txt --output requirements.txt
     pip-audit -r requirements.txt
 
 coverage:
-    poetry run pytest --cov=solver tests/
+    poetry run pytest --cov=excelsolver tests/
+
+ci:
+    tox -e py310

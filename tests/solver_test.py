@@ -31,13 +31,7 @@ def test_problem_1() -> None:
             ],
             dtype=np.int32,
         ),
-        constraints_signs=np.array(
-            [
-                ConstraintSign.GREATER_OR_EQUAL,
-                ConstraintSign.GREATER_OR_EQUAL,
-                ConstraintSign.GREATER_OR_EQUAL,
-            ]
-        ),
+        constraints_signs=np.array([int(x) for x in [ConstraintSign.GREATER_OR_EQUAL] * 3]),
     )
     solution = solver.solve(make_unconstrained_non_negative=True)
 
@@ -71,14 +65,7 @@ def test_problem_2() -> None:
             ],
             dtype=np.int32,
         ),
-        constraints_signs=np.array(
-            [
-                ConstraintSign.LESS_OR_EQUAL,
-                ConstraintSign.LESS_OR_EQUAL,
-                ConstraintSign.LESS_OR_EQUAL,
-                ConstraintSign.LESS_OR_EQUAL,
-            ]
-        ),
+        constraints_signs=np.array([int(x) for x in [ConstraintSign.LESS_OR_EQUAL] * 4]),
     )
 
     solution = solver.solve()
@@ -119,14 +106,7 @@ def test_problem_3() -> None:
             ],
             dtype=np.int32,
         ),
-        constraints_signs=np.array(
-            [
-                ConstraintSign.GREATER_OR_EQUAL,
-                ConstraintSign.GREATER_OR_EQUAL,
-                ConstraintSign.GREATER_OR_EQUAL,
-                ConstraintSign.GREATER_OR_EQUAL,
-            ]
-        ),
+        constraints_signs=np.array([int(x) for x in [ConstraintSign.GREATER_OR_EQUAL] * 4]),
     )
 
     solution = solver.solve(minimum_for_all=0.1)
@@ -195,14 +175,7 @@ def test_pandas() -> None:
             "calories": 600,
         }
     )
-    constraints_signs = np.array(
-        [
-            ConstraintSign.GREATER_OR_EQUAL,
-            ConstraintSign.GREATER_OR_EQUAL,
-            ConstraintSign.GREATER_OR_EQUAL,
-            ConstraintSign.GREATER_OR_EQUAL,
-        ]
-    )
+    constraints_signs = np.array([int(x) for x in [ConstraintSign.GREATER_OR_EQUAL] * len(constraints_right)])
 
     solver = Solver(
         problem_type=ProblemType.MIN,
